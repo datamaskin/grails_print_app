@@ -15,22 +15,25 @@
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
-        <dt:datatable name="EprintTable" domainClass="faux_eprint.Eprint" serverSide="true">
-            <dt:column name="repname"/>
-            <dt:column name="repdesc"/>
-            <dt:column name="dateCreated"/>
-            <dt:column name="lastUpdated"/>
-        </dt:datatable>
-        <asset:deferredScripts/>
-		<script type="javascript">
+		%{--<exa:datatable id="EditTable" items="${faux_eprint.Eprint.all}">
+			<exa:customColumn name="repname">
+				<button name='alert' class='btn-alert'>Report Name</button>
+			</exa:customColumn>
+		</exa:datatable>--}%
+	<dt:datatable name="EprintTable" domainClass="faux_eprint.Eprint" serverSide="true">
+        <dt:column name="repname"/>
+        <dt:column name="repdesc"/>
+        <dt:column name="dateCreated"/>
+        <dt:column name="lastUpdated"/>
+    </dt:datatable>
+    <asset:deferredScripts/>
 
-		</script>
 		%{--<div id="list-eprint" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<table>
+			<table id="EprintTable">
 			<thead>
 					<tr>
                         <g:sortableColumn property="repname" title="${message(code: 'eprint.repname.label', default: 'Repname')}" />
@@ -64,4 +67,14 @@
 			</div>
 		</div>--}%
 	</body>
+	%{--<script type="text/javascript" charset="utf-8">
+		$(document).ready(function() {
+			var datatable = Exa.Datatable.getDatatable('EditTable');
+			console.log(datatable.toString())
+			$('#table tbody').on('click', '.btn-alert', function () {
+                $( "#EditTable" ).accordion();
+			});
+
+        });
+	</script>--}%
 </html>
