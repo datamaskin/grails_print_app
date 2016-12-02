@@ -8,6 +8,7 @@
 //= require jquery
 //= require_tree .
 //= require_self
+//= require exa-datatables
 
 if (typeof jQuery !== 'undefined') {
 	(function($) {
